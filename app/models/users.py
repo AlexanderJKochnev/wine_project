@@ -21,3 +21,7 @@ class User(Base):
 
     def verify_password(self, password: str) -> bool:
         return pwd_context.verify(password, self.hashed_password)
+
+    def __repr__(self):
+        return (f"<User(username={self.username}, "
+                f"hashed_password={self.hashed_password})>")

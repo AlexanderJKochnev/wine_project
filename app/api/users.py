@@ -17,8 +17,11 @@ async def create_user(user: UserCreate, db: AsyncSession = Depends(get_db)):
     if existing_user:
         raise HTTPException(status_code=400,
                             detail="Username already registered")
-    db_user = User(username=user.username)
+    db_user = User(username=user.username,
+                   surname=user.surname,
+                   name=user.name)
     db_user.set_password(user.password)
+    print(f"Hashed password: {db_user.hashed_password}")
     db.add(db_user)
     await db.commit()
     await db.refresh(db_user)

@@ -5,7 +5,7 @@ from app.api import users, storage   # NOQA: E402
 from app.database import engine   # NOQA: E402
 from app.models.users import Base as UserBase   # NOQA: E402
 from app.models.storage import Base as StorageBase   # NOQA: E402
-# from app.admin import setup_admin
+from app.admin import setup_admin
 
 
 app = FastAPI(title="Wine Shelf API",
@@ -17,7 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# setup_admin(app)
+setup_admin(app)
 
 
 # Создание таблиц (на практике — лучше через Alembic!)
@@ -33,4 +33,5 @@ app.include_router(storage.router)
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to MyApp API! Use /docs for API docs."}
+    return {"message": "Welcome to Wine Shelf API! "
+                       "Use /docs for API docs, /admin for Admin."}

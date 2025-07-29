@@ -25,3 +25,7 @@
       3. строка подключения в alembic sqlalchemy.url = postgresql://user:password@localhost:5432/myappdb
 5. Docker: 
    1. Явно указать !/.env в .dockerignore
+6. Админ панели
+   1. http://localhost:8000/redoc redoc
+   2. http://localhost:8000/docs swagger
+   3. 
