@@ -1,12 +1,23 @@
 # main.py
 from fastapi import FastAPI
-from app.api import users, storage
-from app.database import engine
-from app.models.users import Base as UserBase
-from app.models.storage import Base as StorageBase
+from fastapi.middleware.cors import CORSMiddleware
+from app.api import users, storage   # NOQA: E402
+from app.database import engine   # NOQA: E402
+from app.models.users import Base as UserBase   # NOQA: E402
+from app.models.storage import Base as StorageBase   # NOQA: E402
+# from app.admin import setup_admin
 
-app = FastAPI(title="MyApp API",
+
+app = FastAPI(title="Wine Shelf API",
               description="API for mobile apps with admin panel")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# setup_admin(app)
 
 
 # Создание таблиц (на практике — лучше через Alembic!)

@@ -18,3 +18,10 @@
     - Password: .env/POSTGRES_PASSWORD
     - Database: .env/POSTGRES_DB
 3. App:  FastApi service
+4. Alembic:  migration management
+   1. Контролировать в файле alembic.ini строку подключения: Alembic не поддерживает asyncpg напрямую. Нужно использовать psycopg2 для миграций.
+      1. sqlalchemy.url = driver://user:pass@localhost/dbname
+      2. строка подключения в fastapi postgresql+asyncpg://user:password@localhost:5432/myappdb
+      3. строка подключения в alembic sqlalchemy.url = postgresql://user:password@localhost:5432/myappdb
+5. Docker: 
+   1. Явно указать !/.env в .dockerignore
